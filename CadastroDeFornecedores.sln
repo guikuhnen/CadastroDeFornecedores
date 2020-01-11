@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroDeFornecedores.UI", "CadastroDeFornecedores.UI\CadastroDeFornecedores.UI.csproj", "{D14544AE-B317-448A-A5DC-5F59E0F1DB37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CadastroDeFornecedores.UI", "CadastroDeFornecedores.UI\CadastroDeFornecedores.UI.csproj", "{D14544AE-B317-448A-A5DC-5F59E0F1DB37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroDeFornecedores.Domain", "CadastroDeFornecedores.Domain\CadastroDeFornecedores.Domain.csproj", "{600DBDE4-33D3-4CFB-ADE5-97A161FCA1A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroDeFornecedores.Application", "CadastroDeFornecedores.Application\CadastroDeFornecedores.Application.csproj", "{BDF309EB-B265-42FF-903F-06E2BD0E9C40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadastroDeFornecedores.Data", "CadastroDeFornecedores.Data\CadastroDeFornecedores.Data.csproj", "{24664014-451B-454C-BCF4-3D98DDBA6B8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{D14544AE-B317-448A-A5DC-5F59E0F1DB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D14544AE-B317-448A-A5DC-5F59E0F1DB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D14544AE-B317-448A-A5DC-5F59E0F1DB37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600DBDE4-33D3-4CFB-ADE5-97A161FCA1A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600DBDE4-33D3-4CFB-ADE5-97A161FCA1A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600DBDE4-33D3-4CFB-ADE5-97A161FCA1A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600DBDE4-33D3-4CFB-ADE5-97A161FCA1A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDF309EB-B265-42FF-903F-06E2BD0E9C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF309EB-B265-42FF-903F-06E2BD0E9C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF309EB-B265-42FF-903F-06E2BD0E9C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF309EB-B265-42FF-903F-06E2BD0E9C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24664014-451B-454C-BCF4-3D98DDBA6B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24664014-451B-454C-BCF4-3D98DDBA6B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24664014-451B-454C-BCF4-3D98DDBA6B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24664014-451B-454C-BCF4-3D98DDBA6B8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
