@@ -1,4 +1,4 @@
-# CadastroDeFornecedores
+# Cadastro de Fornecedores
 
 Esse aplicativo utiliza .NET Core 3.1.
 
