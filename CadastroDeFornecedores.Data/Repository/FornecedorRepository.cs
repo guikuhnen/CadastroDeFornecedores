@@ -45,11 +45,9 @@ namespace CadastroDeFornecedores.Data.Repository
 
         public async Task<Fornecedor> GetAsync(int id)
         {
-            // TODO getFullAsync
             return await _context.Fornecedores
                 .Include(f => f.Empresa)
                 .Include(f => f.Telefones)
-                // .AsNoTracking()
                 .Where(f => f.Id == id)
                 .FirstOrDefaultAsync();
         }

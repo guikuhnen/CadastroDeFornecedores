@@ -44,8 +44,6 @@ namespace CadastroDeFornecedores.UI.Controllers
 
             if (ModelState.IsValid)
             {
-                // TODO REGRAS
-
                 await _fornecedorService.CreateAsync(fornecedor);
 
                 return RedirectToAction(nameof(Index));
@@ -84,7 +82,6 @@ namespace CadastroDeFornecedores.UI.Controllers
 
             if (ModelState.IsValid)
             {
-                // TODO REGRAS
                 try
                 {
                     await _fornecedorService.UpdateAsync(fornecedor);
