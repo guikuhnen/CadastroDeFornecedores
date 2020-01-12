@@ -40,9 +40,12 @@ namespace CadastroDeFornecedores.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,CPFouCNPJ,DataHoraCadastro,RegistroGeralPF,DataAniversarioPF,EmpresaId,Telefones")] Fornecedor fornecedor)
         {
+            ValidarFornecedor(fornecedor);
+
             if (ModelState.IsValid)
             {
                 // TODO REGRAS
+
                 await _fornecedorService.CreateAsync(fornecedor);
 
                 return RedirectToAction(nameof(Index));
@@ -76,6 +79,8 @@ namespace CadastroDeFornecedores.UI.Controllers
         {
             if (id != fornecedor.Id)
                 return NotFound();
+
+            ValidarFornecedor(fornecedor);
 
             if (ModelState.IsValid)
             {
@@ -141,6 +146,27 @@ namespace CadastroDeFornecedores.UI.Controllers
             fornecedor.Telefones.Add(new FornecedorTelefones());
 
             return PartialView("FornecedorTelefone", fornecedor);
+        }
+
+        private void ValidarFornecedor(Fornecedor fornecedor)
+        {
+            // Caso o fornecedor seja pessoa física, também é necessário cadastrar o RG e a data de nascimento
+            if (fornecedor.CPFouCNPJ.Length.Equals(11))
+            {
+                if (String.IsNullOrEmpty(fornecedor.RegistroGeralPF))
+                    ModelState.AddModelError("RegistroGeralPF", "O campo RG é obrigatório.");
+
+                if (!fornecedor.DataAniversarioPF.HasValue)
+                    ModelState.AddModelError("DataAniversarioPF", "O campo Data de Aniversário é obrigatório.");
+
+                // Caso a empresa seja do Paraná, não permitir cadastrar um fornecedor pessoa física menor de idade
+                var empresa = _empresaService.GetAsync(fornecedor.EmpresaId).Result;
+
+                if (empresa?.UF == UnidadeFederacaoSigla.PR)
+                    if (fornecedor.DataAniversarioPF.HasValue)
+                        if (DateTime.Today.Year - fornecedor.DataAniversarioPF.Value.Year < 18)
+                            ModelState.AddModelError("DataAniversarioPF", "Não é permitido cadastrar um fornecedor menor de idade");
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model CadastroDeFornecedores.Domain.Models.Fornecedor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastrar Fornecedor";
 }
 
 <h1>Cadastrar Fornecedor</h1>
@@ -18,18 +18,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="CPFouCNPJ" class="control-label">CPF ou CNPJ</label>
-                <input asp-for="CPFouCNPJ" class="form-control" placeholder="Somente números" type="number" />
+                <input asp-for="CPFouCNPJ" class="form-control" placeholder="Somente números" type="number" id="nCPFouCNPJ" />
                 <span asp-validation-for="CPFouCNPJ" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="RegistroGeralPF" class="control-label">RG</label>
-                <input asp-for="RegistroGeralPF" class="form-control" placeholder="Somente números" type="number" />
-                <span asp-validation-for="RegistroGeralPF" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataAniversarioPF" class="control-label">Data de Aniversário</label>
-                <input asp-for="DataAniversarioPF" class="form-control" />
-                <span asp-validation-for="DataAniversarioPF" class="text-danger"></span>
+            <div id="pessoaFisica">
+                <div class="form-group">
+                    <label asp-for="RegistroGeralPF" class="control-label">RG</label>
+                    <input asp-for="RegistroGeralPF" class="form-control" placeholder="Somente números" type="number" />
+                    <span asp-validation-for="RegistroGeralPF" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DataAniversarioPF" class="control-label">Data de Aniversário</label>
+                    <input asp-for="DataAniversarioPF" class="form-control" />
+                    <span asp-validation-for="DataAniversarioPF" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="EmpresaId" class="control-label">Empresa</label>
@@ -79,6 +81,22 @@
                     $('#telefonesContainer').html(partialView);
                 }
             });
+        });
+
+        $(document).ready(function () {
+            if (!$("#nCPFouCNPJ").val()) {
+                $('#pessoaFisica').hide();
+            } else {
+                $('#pessoaFisica').show();
+            }
+        });
+
+        $("#nCPFouCNPJ").blur(function () {
+            if (this.value.length == 11) {
+                $('#pessoaFisica').show();
+            } else {
+                $('#pessoaFisica').hide();
+            }
         });
     </script>
 }

@@ -1,39 +1,37 @@
 ﻿@model IEnumerable<CadastroDeFornecedores.Domain.Models.Fornecedor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista de Fornecedores";
 }
 
 <h1>Lista de Fornecedores</h1>
 
 <br />
 <form asp-action="Index" method="get">
-    <p>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input class="form-control" placeholder="Nome" type="text" name="BuscarNome">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input class="form-control" placeholder="CPF ou CNPJ" type="number" name="BuscarCPFouCNPJ">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input class="form-control" placeholder="Data de Cadastro" type="date" name="BuscarData">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <input type="submit" value="Filtrar" class="btn btn-info float-right" />
-                </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <input class="form-control" placeholder="Nome" type="text" name="BuscarNome">
             </div>
         </div>
-    </p>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input class="form-control" placeholder="CPF ou CNPJ" type="number" name="BuscarCPFouCNPJ">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input class="form-control" placeholder="Data de Cadastro" type="date" name="BuscarData">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input type="submit" value="Filtrar" class="btn btn-info float-right" />
+            </div>
+        </div>
+    </div>
 </form>
-<table class="table">
+<table class="table table-responsive-md table-striped border">
     <thead>
         <tr>
             <th>
