@@ -15,9 +15,9 @@ namespace CadastroDeFornecedores.Application.Services
             _repository = repository;
         }
 
-        public async Task<List<Fornecedor>> GetAllAsync()
+        public async Task<List<Fornecedor>> GetAllAsync(string buscarNome, string buscarCPFouCNPJ, DateTime buscarData)
         {
-            return await _repository.GetAllAsync();
+            return await _repository.GetAllAsync(buscarNome, buscarCPFouCNPJ, buscarData);
         }
 
         public async Task CreateAsync(Fornecedor fornecedor)

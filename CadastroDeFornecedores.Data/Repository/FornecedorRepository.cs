@@ -1,6 +1,7 @@
 ﻿using CadastroDeFornecedores.Data.Context;
 using CadastroDeFornecedores.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,9 +17,20 @@ namespace CadastroDeFornecedores.Data.Repository
             _context = context;
         }
 
-        public async Task<List<Fornecedor>> GetAllAsync()
+        public async Task<List<Fornecedor>> GetAllAsync(string buscarNome, string buscarCPFouCNPJ, DateTime buscarData)
         {
-            return await _context.Fornecedores
+            var fornecedores = _context.Fornecedores.AsQueryable();
+
+            if (!String.IsNullOrEmpty(buscarNome))
+                fornecedores = fornecedores.Where(f => f.Nome.Contains(buscarNome));
+
+            if (!String.IsNullOrEmpty(buscarCPFouCNPJ))
+                fornecedores = fornecedores.Where(f => f.CPFouCNPJ.Contains(buscarCPFouCNPJ));
+
+            if (buscarData != DateTime.MinValue)
+                fornecedores = fornecedores.Where(f => f.DataHoraCadastro.Date.Equals(buscarData));
+
+            return await fornecedores
                 .Include(f => f.Empresa)
                 .Include(f => f.Telefones)
                 .ToListAsync();

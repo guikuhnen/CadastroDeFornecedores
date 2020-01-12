@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CadastroDeFornecedores.Domain.Models;
 using CadastroDeFornecedores.Application.Services;
+using System;
 
 namespace CadastroDeFornecedores.UI.Controllers
 {
@@ -19,9 +20,11 @@ namespace CadastroDeFornecedores.UI.Controllers
         }
 
         // GET: Fornecedores
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string buscarNome, string buscarCPFouCNPJ, DateTime buscarData)
         {
-            return View(await _fornecedorService.GetAllAsync());
+            var fornecedores = await _fornecedorService.GetAllAsync(buscarNome, buscarCPFouCNPJ, buscarData);
+
+            return View(fornecedores);
         }
 
         // GET: Fornecedores/Create
