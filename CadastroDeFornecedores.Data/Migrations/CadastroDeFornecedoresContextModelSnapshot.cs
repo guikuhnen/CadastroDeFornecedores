@@ -26,8 +26,9 @@ namespace CadastroDeFornecedores.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CNPJ")
-                        .HasColumnType("int")
+                    b.Property<string>("CNPJ")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(14)")
                         .HasMaxLength(14);
 
                     b.Property<string>("NomeFantasia")
@@ -49,8 +50,9 @@ namespace CadastroDeFornecedores.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CPFouCNPJ")
-                        .HasColumnType("int")
+                    b.Property<string>("CPFouCNPJ")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(14)")
                         .HasMaxLength(14);
 
                     b.Property<DateTime?>("DataAniversarioPF")
@@ -66,8 +68,8 @@ namespace CadastroDeFornecedores.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RegistroGeralPF")
-                        .HasColumnType("int")
+                    b.Property<string>("RegistroGeralPF")
+                        .HasColumnType("nvarchar(9)")
                         .HasMaxLength(9);
 
                     b.HasKey("Id");
@@ -87,8 +89,9 @@ namespace CadastroDeFornecedores.Data.Migrations
                     b.Property<int>("FornecedorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Numero")
-                        .HasColumnType("int")
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.HasKey("Id");

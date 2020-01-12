@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CadastroDeFornecedores.Domain.Models;
@@ -42,8 +40,8 @@ namespace CadastroDeFornecedores.UI.Controllers
             return View(empresa);
         }
 
-        // GET: Empresas/Edit/{id}
-        public async Task<IActionResult> Edit(int id)
+        // GET: Empresas/Edit/{id}?{viewName=Edit/Delete}
+        public async Task<IActionResult> Edit(int id, string viewName)
         {
             if (id.Equals(0))
                 return NotFound();
@@ -53,7 +51,7 @@ namespace CadastroDeFornecedores.UI.Controllers
             if (empresa == null)
                 return NotFound();
 
-            return View(empresa);
+            return View(viewName, empresa);
         }
 
         // POST: Empresas/Edit/{id}
@@ -61,7 +59,7 @@ namespace CadastroDeFornecedores.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,NomeFantasia,CNPJ,UF")] Empresa empresa)
         {
-            if (id != empresa.Id)
+            if (!id.Equals(empresa.Id))
                 return NotFound();
 
             if (ModelState.IsValid)
@@ -84,38 +82,19 @@ namespace CadastroDeFornecedores.UI.Controllers
             return View(empresa);
         }
 
-        // GET: Empresas/Delete/{id}
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empresa = await _context.Empresas
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (empresa == null)
-            {
-                return NotFound();
-            }
-
-            return View(empresa);
-        }
-
-        // POST: Empresas/Delete/5
+        // POST: Empresas/Delete/{id}
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var empresa = await _context.Empresas.FindAsync(id);
-            _context.Empresas.Remove(empresa);
-            await _context.SaveChangesAsync();
+            await _empresaService.DeleteAsync(id);
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmpresaExists(int id)
         {
-            return _context.Empresas.Any(e => e.Id == id);
+            return _empresaService.EmpresaExists(id);
         }
     }
 }

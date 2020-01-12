@@ -14,7 +14,7 @@ namespace CadastroDeFornecedores.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomeFantasia = table.Column<string>(nullable: false),
-                    CNPJ = table.Column<int>(maxLength: 14, nullable: false),
+                    CNPJ = table.Column<string>(maxLength: 14, nullable: false),
                     UF = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -29,9 +29,9 @@ namespace CadastroDeFornecedores.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(nullable: false),
-                    CPFouCNPJ = table.Column<int>(maxLength: 14, nullable: false),
+                    CPFouCNPJ = table.Column<string>(maxLength: 14, nullable: false),
                     DataHoraCadastro = table.Column<DateTime>(nullable: false),
-                    RegistroGeralPF = table.Column<int>(maxLength: 9, nullable: true),
+                    RegistroGeralPF = table.Column<string>(maxLength: 9, nullable: true),
                     DataAniversarioPF = table.Column<DateTime>(nullable: true),
                     EmpresaId = table.Column<int>(nullable: false)
                 },
@@ -52,7 +52,7 @@ namespace CadastroDeFornecedores.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Numero = table.Column<int>(maxLength: 20, nullable: false),
+                    Numero = table.Column<string>(maxLength: 20, nullable: false),
                     FornecedorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

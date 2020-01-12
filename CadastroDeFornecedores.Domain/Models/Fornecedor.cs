@@ -12,13 +12,14 @@ namespace CadastroDeFornecedores.Domain.Models
         [Required]
         public string Nome { get; set; }
 
+        [Required]
         [MaxLength(14)]
-        public int CPFouCNPJ { get; set; }
+        public string CPFouCNPJ { get; set; }
 
         public DateTime DataHoraCadastro { get; set; }
 
         [MaxLength(9)]
-        public int? RegistroGeralPF { get; set; }
+        public string RegistroGeralPF { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime? DataAniversarioPF { get; set; }
@@ -34,8 +35,9 @@ namespace CadastroDeFornecedores.Domain.Models
     {
         public int Id { get; set; }
 
+        [Required]
         [MaxLength(20)]
-        public int Numero { get; set; }
+        public string Numero { get; set; }
 
         [ForeignKey("FornecedorId")]
         public Fornecedor Fornecedor { get; set; }

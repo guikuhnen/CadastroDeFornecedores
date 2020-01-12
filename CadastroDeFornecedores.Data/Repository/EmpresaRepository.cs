@@ -1,9 +1,8 @@
 ﻿using CadastroDeFornecedores.Data.Context;
 using CadastroDeFornecedores.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CadastroDeFornecedores.Data.Repository
@@ -25,6 +24,7 @@ namespace CadastroDeFornecedores.Data.Repository
         public async Task CreateAsync(Empresa empresa)
         {
             _context.Add(empresa);
+
             await _context.SaveChangesAsync();
         }
 
@@ -36,7 +36,22 @@ namespace CadastroDeFornecedores.Data.Repository
         public async Task UpdateAsync(Empresa empresa)
         {
             _context.Update(empresa);
+
             await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var empresa = await _context.Empresas.FindAsync(id);
+
+            _context.Empresas.Remove(empresa);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public bool EmpresaExists(int id)
+        {
+            return _context.Empresas.Any(e => e.Id == id);
         }
     }
 }

@@ -9,8 +9,9 @@ namespace CadastroDeFornecedores.Domain.Models
         [Required]
         public string NomeFantasia { get; set; }
 
+        [Required]
         [MaxLength(14)]
-        public int CNPJ { get; set; }
+        public string CNPJ { get; set; }
 
         public UnidadeFederacaoSigla UF { get; set; }
     }    

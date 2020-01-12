@@ -1,7 +1,5 @@
 ﻿using CadastroDeFornecedores.Domain.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CadastroDeFornecedores.Data.Repository
@@ -12,5 +10,7 @@ namespace CadastroDeFornecedores.Data.Repository
         Task CreateAsync(Empresa empresa);
         Task<Empresa> GetAsync(int id);
         Task UpdateAsync(Empresa empresa);
+        Task DeleteAsync(int id);
+        bool EmpresaExists(int id);
     }
 }

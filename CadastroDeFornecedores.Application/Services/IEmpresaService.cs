@@ -10,5 +10,7 @@ namespace CadastroDeFornecedores.Application.Services
         Task CreateAsync(Empresa empresa);
         Task<Empresa> GetAsync(int id);
         Task UpdateAsync(Empresa empresa);
+        Task DeleteAsync(int id);
+        bool EmpresaExists(int id);
     }
 }
