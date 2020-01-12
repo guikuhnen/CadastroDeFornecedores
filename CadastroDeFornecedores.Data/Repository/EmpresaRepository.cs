@@ -21,6 +21,11 @@ namespace CadastroDeFornecedores.Data.Repository
             return await _context.Empresas.ToListAsync();
         }
 
+        public List<Empresa> GetAll()
+        {
+            return _context.Empresas.ToList();
+        }
+
         public async Task CreateAsync(Empresa empresa)
         {
             _context.Add(empresa);

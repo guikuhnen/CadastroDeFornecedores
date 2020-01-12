@@ -4,54 +4,59 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Remover Fornecedor</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Tem certeza que deseja remover este Fornecedor?</h3>
+<hr />
 <div>
-    <h4>Fornecedor</h4>
-    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CPFouCNPJ)
+        <dt class="col-sm-2">
+            CPF ou CNPJ
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CPFouCNPJ)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataHoraCadastro)
+        <dt class="col-sm-2">
+            Data de Cadastro
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DataHoraCadastro)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegistroGeralPF)
+        <dt class="col-sm-2">
+            RG
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegistroGeralPF)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataAniversarioPF)
+        <dt class="col-sm-2">
+            Data de Aniversário
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DataAniversarioPF)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Empresa)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Empresa.Id)
-        </dd class>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Empresa.NomeFantasia)
+        </dd>
     </dl>
-    
+
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <div class="form-group">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
     </form>
 </div>
+
+<div class="border-top">
+    <a asp-action="Index">Voltar para lista</a>
+</div>
+

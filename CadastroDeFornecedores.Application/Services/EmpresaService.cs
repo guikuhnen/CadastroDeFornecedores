@@ -19,6 +19,11 @@ namespace CadastroDeFornecedores.Application.Services
             return await _repository.GetAllAsync();
         }
 
+        public List<Empresa> GetAll()
+        {
+            return _repository.GetAll();
+        }
+
         public async Task CreateAsync(Empresa empresa)
         {
             await _repository.CreateAsync(empresa);

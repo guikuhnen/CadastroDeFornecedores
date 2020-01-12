@@ -7,6 +7,7 @@ namespace CadastroDeFornecedores.Data.Repository
     public interface IEmpresaRepository
     {
         Task<List<Empresa>> GetAllAsync();
+        List<Empresa> GetAll();
         Task CreateAsync(Empresa empresa);
         Task<Empresa> GetAsync(int id);
         Task UpdateAsync(Empresa empresa);

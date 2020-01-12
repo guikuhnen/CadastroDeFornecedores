@@ -1,0 +1,13 @@
+﻿@model CadastroDeFornecedores.Domain.Models.FornecedorTelefones
+
+<div class="row">
+    <div class="col-md-12">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="FornecedorId" />
+        <div class="form-group">
+            <input asp-for="Numero" class="form-control" />
+            <span asp-validation-for="Numero" class="text-danger"></span>
+        </div>
+    </div>
+</div>

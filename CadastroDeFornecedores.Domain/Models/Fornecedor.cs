@@ -29,6 +29,11 @@ namespace CadastroDeFornecedores.Domain.Models
         public int EmpresaId { get; set; }
 
         public List<FornecedorTelefones> Telefones { get; set; }
+
+        public Fornecedor()
+        {
+            this.Telefones = new List<FornecedorTelefones>();
+        }
     }
 
     public class FornecedorTelefones

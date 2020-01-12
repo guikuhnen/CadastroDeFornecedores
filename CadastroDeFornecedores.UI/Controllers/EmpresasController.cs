@@ -34,9 +34,11 @@ namespace CadastroDeFornecedores.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _empresaService.CreateAsync(empresa);                
+                await _empresaService.CreateAsync(empresa);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(empresa);
         }
 

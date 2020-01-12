@@ -4,8 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Lista de Fornecedores</h1>
 
+<br />
 <table class="table">
     <thead>
         <tr>
@@ -13,49 +14,44 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CPFouCNPJ)
+                CPF ou CNPJ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataHoraCadastro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegistroGeralPF)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAniversarioPF)
+                Data de Cadastro
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Empresa)
+            </th>
+            <th>
+                Telefone
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPFouCNPJ)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataHoraCadastro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegistroGeralPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAniversarioPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empresa.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPFouCNPJ)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataHoraCadastro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa.NomeFantasia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefones.FirstOrDefault().Numero)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" asp-route-viewName="Edit">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" asp-route-viewName="Delete">Remover</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

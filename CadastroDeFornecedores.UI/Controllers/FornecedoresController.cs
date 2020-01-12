@@ -1,0 +1,143 @@
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using CadastroDeFornecedores.Domain.Models;
+using CadastroDeFornecedores.Application.Services;
+
+namespace CadastroDeFornecedores.UI.Controllers
+{
+    public class FornecedoresController : Controller
+    {
+        private readonly IFornecedorService _fornecedorService;
+        private readonly IEmpresaService _empresaService;
+
+        public FornecedoresController(IFornecedorService fornecedorService, IEmpresaService empresaService)
+        {
+            _fornecedorService = fornecedorService;
+            _empresaService = empresaService;
+        }
+
+        // GET: Fornecedores
+        public async Task<IActionResult> Index()
+        {
+            return View(await _fornecedorService.GetAllAsync());
+        }
+
+        // GET: Fornecedores/Create
+        public IActionResult Create()
+        {
+            LoadViewData();
+
+            return View();
+        }
+
+        // POST: Fornecedores/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Nome,CPFouCNPJ,DataHoraCadastro,RegistroGeralPF,DataAniversarioPF,EmpresaId,Telefones")] Fornecedor fornecedor)
+        {
+            if (ModelState.IsValid)
+            {
+                // TODO REGRAS
+                await _fornecedorService.CreateAsync(fornecedor);
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            LoadViewData();
+
+            return View(fornecedor);
+        }
+
+        // GET: Fornecedores/Edit/{id}
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (id.Equals(0))
+                return NotFound();
+
+            var fornecedor = await _fornecedorService.GetAsync(id);
+
+            if (fornecedor == null)
+                return NotFound();
+
+            LoadViewData();
+
+            return View(fornecedor);
+        }
+
+        // POST: Fornecedores/Edit/{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,CPFouCNPJ,DataHoraCadastro,RegistroGeralPF,DataAniversarioPF,EmpresaId,Telefones")] Fornecedor fornecedor)
+        {
+            if (id != fornecedor.Id)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                // TODO REGRAS
+                try
+                {
+                    await _fornecedorService.UpdateAsync(fornecedor);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!FornecedorExists(fornecedor.Id))
+                        return NotFound();
+                    else
+                        throw;
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            LoadViewData();
+
+            return View(fornecedor);
+        }
+
+        // GET: Fornecedores/Delete/{id}
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id.Equals(0))
+                return NotFound();
+
+            var fornecedor = await _fornecedorService.GetAsync(id);
+
+            if (fornecedor == null)
+                return NotFound();
+
+            return View(fornecedor);
+        }
+
+        // POST: Fornecedores/Delete/{id}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _fornecedorService.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool FornecedorExists(int id)
+        {
+            return _fornecedorService.FornecedorExists(id);
+        }
+
+        private void LoadViewData()
+        {
+            ViewData["Empresa"] = new SelectList(_empresaService.GetAll(), "Id", "NomeFantasia");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddTelefone([Bind("Telefones")] Fornecedor fornecedor)
+        {
+            fornecedor.Telefones.Add(new FornecedorTelefones());
+
+            return PartialView("FornecedorTelefone", fornecedor);
+        }
+    }
+}
