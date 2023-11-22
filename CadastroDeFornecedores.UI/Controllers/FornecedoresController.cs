@@ -138,7 +138,7 @@ namespace CadastroDeFornecedores.UI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddTelefone([Bind("Telefones")] Fornecedor fornecedor)
+        public IActionResult AddTelefone([Bind("Telefones")] Fornecedor fornecedor)
         {
             fornecedor.Telefones.Add(new FornecedorTelefones());
 
